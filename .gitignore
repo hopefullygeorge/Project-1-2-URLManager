@@ -1,0 +1,41 @@
+# Xcode
+.DS_Store
+UserInterfaceState.xcuserstate
+xcuserdata/
+*.xcworkspace/
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+
+# Swift Package Manager
+/.swiftpm
+Package.resolved
+
+# CocoaPods
+/Pods/
+/Podfile.lock
+
+# Carthage
+/Carthage/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Derived Data
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Temporary and Logs
+*.log
+*.swp
+*.swo
+*.db
+
+# Environment variables
+.env
