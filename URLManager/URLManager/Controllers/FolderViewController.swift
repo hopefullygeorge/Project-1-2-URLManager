@@ -42,6 +42,24 @@ class FolderViewController: UITableViewController {
         return cell
     }
     
+    //MARK: - TableView Swipe Method
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, boolValue in
+            
+            let folder = self.folderArray[indexPath.row]
+            self.context.delete(folder)
+            self.saveFolders()
+            self.loadFolders()
+            
+        }
+        
+        
+        let swipeAction = UISwipeActionsConfiguration(actions: [action])
+        return swipeAction
+    }
+    
     //MARK: - Data Maniuplation Methods
     
     func saveFolders() {
@@ -65,31 +83,46 @@ class FolderViewController: UITableViewController {
     }
     
     
-        //MARK: - TableView Delegate Methods
-        
-        @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-            // Open a UI window
-            let alert = UIAlertController(title: "Test Title", message: "Test Message", preferredStyle: .alert)
-            
-            // Add a textfield
-            alert.addTextField { UITextField in
-                UITextField.placeholder = "Test Placeholder"
-            }
-            
-            let action = UIAlertAction(title: "Test Action Title", style: .default, handler: { action in
-                let newFolder = Folder(context: self.context)
-                
-                // Save text in textfield to Folder object
-                newFolder.name = alert.textFields?.first?.text
-                self.folderArray.append(newFolder)
-                self.saveFolders()
-                
-            })
-            
-            alert.addAction(action)
-            
-            present(alert, animated: true, completion:  nil)
-            
-            
-        }
+    //MARK: - TableView Delegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToURL", sender: self)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! URLViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.chosenFolder = folderArray[indexPath.row]
+        }
+        
+    }
+    
+    //MARK: - Add new folders
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        // Open a UI window
+        let alert = UIAlertController(title: "Add New URLManager Folder", message: "", preferredStyle: .alert)
+        
+        // Add a textfield
+        alert.addTextField { UITextField in
+            UITextField.placeholder = "Add folder here..."
+        }
+        
+        let action = UIAlertAction(title: "Add New Folder", style: .default, handler: { action in
+            let newFolder = Folder(context: self.context)
+            
+            // Save text in textfield to Folder object
+            newFolder.name = alert.textFields?.first?.text
+            
+            self.folderArray.append(newFolder)
+            self.saveFolders()
+            
+        })
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion:  nil)
+        
+        
+    }
+}

@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="-719" y="-30"/>
         </scene>
-        <!--Table View Controller-->
+        <!--URLs-->
         <scene sceneID="sbn-BG-fF8">
             <objects>
-                <tableViewController id="Hxu-e3-FuZ" sceneMemberID="viewController">
+                <tableViewController id="Hxu-e3-FuZ" customClass="URLViewController" customModule="URLManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="rhD-ji-u7t">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,11 +84,17 @@
                             <outlet property="delegate" destination="Hxu-e3-FuZ" id="1iC-be-lMm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="owf-MD-3bZ"/>
+                    <navigationItem key="navigationItem" title="URLs" id="owf-MD-3bZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4qR-YT-zaj">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="Hxu-e3-FuZ" id="L2y-RY-TIs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfK-QG-fTL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="-30"/>
+            <point key="canvasLocation" x="855.72519083969462" y="-30.281690140845072"/>
         </scene>
     </scenes>
     <resources>
